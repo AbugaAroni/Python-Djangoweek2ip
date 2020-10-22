@@ -27,3 +27,14 @@ Login, get html message*********
 
 
 make the sign up and then make the newletter form/email form
+
+
+{%for p in profiles%}
+  {%if p.username==user%}
+  {{p.bio}}
+<img src="{{p.profilephoto.url}}"  class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="">
+  {%endif%}
+  {%if p.username==user%}
+  {{p.bio}}
+  {%endif%}
+{% endfor%}

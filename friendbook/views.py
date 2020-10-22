@@ -12,11 +12,18 @@ def search_results(request):
 
     if 'images' in request.GET and request.GET["images"]:
         search_term = request.GET.get("images")
-        searched_images = Blog_Images.search_by_caption(search_term)
+        searched_images = Friend_Images.search_by_caption(search_term)
         message = f"{search_term}"
 
-        return render(request, 'everything/search.html',{"message":message,"imgs": searched_images})
+        return render(request, 'searchresult.html',{"message":message,"imgs": searched_images})
 
     else:
         message = "You haven't searched for any term"
         return render(request, 'searchresult.html',{"message":message})
+
+def singleimage(request,image_id):
+    try:
+        imagez = Friend_Images.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,'single-picture.html', {"imagez":imagez})

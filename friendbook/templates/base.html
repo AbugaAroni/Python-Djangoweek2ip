@@ -1,5 +1,5 @@
-{% load bootstrap3 %}
 {% load static%}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +17,15 @@
 
 </head>
 <body>
-    {% include "navbar.html" %}
+    <div class="container">
+      {% include "navbar.html" %}
 
-    {% block content %} <h1 class='text-center'>FriendBook</h1> {%endblock%}
+      {% block content %} <h1 class='text-center'>FriendBook</h1> {%endblock%}
 
-    {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
-    {% endblock %}
+      {% block scripts %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       {% bootstrap_javascript %}
+      {% endblock %}
+    </div>
 </body>
 </html>

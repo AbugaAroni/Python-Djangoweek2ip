@@ -1,5 +1,10 @@
 create newsletter
 
+user.profile
+profile  foreign key in users
+
+
+users foreign key in images
 
 
 followers models
@@ -21,4 +26,4 @@ Search functionality *******
 Login, get html message*********
 
 
-make the sign up abnd then make the newletter form/email form
+make the sign up and then make the newletter form/email form

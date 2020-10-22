@@ -29,3 +29,10 @@ def singleimage(request,image_id):
     except DoesNotExist:
         raise Http404()
     return render(request,'single-picture.html', {"imagez":imagez})
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    allimages = Friend_Images.objects.all()
+    allprofiles = Profile.objects.all()
+
+    return render(request, 'accounts/profile.html', {"images":allimages})

@@ -30,10 +30,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+LOGIN_REDIRECT_URL = 'user_profile'
 
 INSTALLED_APPS = [
     'friendbook',
-    'bootstrap3',  
+    'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

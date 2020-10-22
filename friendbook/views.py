@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Profile, Friend_Images
 from django.contrib.auth.decorators import login_required
 from .forms import NewProfileForm, NewImageForm
@@ -58,7 +58,10 @@ def new_post(request):
         form = NewImageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
-            image.username = current_user
+            image.usersubmitter = current_user
+
+            allprofiles = Profile.objects.get(username=current_user)
+            image.profile =  allprofiles
             image.save()
         return redirect(profile)
 

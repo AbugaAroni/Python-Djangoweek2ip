@@ -29,9 +29,9 @@ class Friend_Images(models.Model):
     i_images = models.ImageField(upload_to = 'images/')
     caption = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
-    usersubmitter = models.ForeignKey(User,on_delete=models.CASCADE)    
+    usersubmitter = models.ForeignKey(User,on_delete=models.CASCADE)
     comments = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

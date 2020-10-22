@@ -1,5 +1,3 @@
-create newsletter
-
 user.profile
 profile  foreign key in users
 
@@ -11,7 +9,9 @@ followers models
 many-to-many relationship with users
 followersid, userid1
 
-users - followersid
+
+following and followers list
+userid, theiruserid
 
 likes models
 many-to-many relationship with images

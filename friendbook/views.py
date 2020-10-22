@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Profile, Friend_Images
 from django.contrib.auth.decorators import login_required
-from .forms import NewProfileForm
+from .forms import NewProfileForm, NewImageForm
 from django.db.models import Q
 
 # Create your views here.
@@ -50,3 +50,18 @@ def profile(request):
     else:
         form = NewProfileForm()
     return render(request, 'accounts/profile.html', {"form": form, "images":allimages,  "profiles":allprofiles})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.username = current_user
+            image.save()
+        return redirect(profile)
+
+    else:
+        form = NewImageForm()
+    return render(request, 'new_post.html', {"form": form})

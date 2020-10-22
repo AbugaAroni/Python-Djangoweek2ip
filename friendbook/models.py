@@ -23,11 +23,13 @@ class Profile(models.Model):
     class Meta:
         ordering = ['username']
 
+from tinymce.models import HTMLField
 class Friend_Images(models.Model):
     title = models.CharField(max_length =60)
     i_images = models.ImageField(upload_to = 'images/')
     caption = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    usersubmitter = models.ForeignKey(User,on_delete=models.CASCADE)    
     comments = models.TextField()
     likes = models.IntegerField()
 

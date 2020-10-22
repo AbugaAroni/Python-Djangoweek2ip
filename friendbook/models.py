@@ -39,8 +39,8 @@ class Friend_Images(models.Model):
     def delete_image(self):
         self.delete()
 
-    def update_profile(self):
-        Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')
+    def update_caption(self):
+        Friend_Images.objects.filter(title = self.title).update(caption ='rick')
 
     class Meta:
         ordering = ['title']

@@ -55,4 +55,14 @@ class Friend_ImagesTestClass(TestCase):
         def test_save_method(self):
             self.abugaimage.save_image()
             testsaving = Friend_Images.objects.all()
-            self.assertTrue(len(testsaving) > 0)            
+            self.assertTrue(len(testsaving) > 0)
+
+        # Testing Delete Method
+        def test_delete_method(self):
+            self.abugaimage.save_image()
+            testsaving = Friend_Images.objects.all()
+            self.assertTrue(len(testsaving) > 0)
+
+            self.abugaimage.delete_image()
+            testdelete = Friend_Images.objects.filter(title='Cool pic')
+            self.assertEqual(len(testdelete), 0)

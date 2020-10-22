@@ -17,7 +17,7 @@ class Profile(models.Model):
         self.delete()
 
     def update_profile(self):
-        Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')        
+        Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')
 
     class Meta:
         ordering = ['user_name']
@@ -29,3 +29,18 @@ class Friend_Images(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     comments = models.TextField()
     likes = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    def update_profile(self):
+        Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')
+
+    class Meta:
+        ordering = ['title']

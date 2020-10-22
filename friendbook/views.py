@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Profile, Friend_Images
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import NewProfileForm, NewImageForm
 from django.db.models import Q
@@ -69,3 +70,11 @@ def new_post(request):
     else:
         form = NewImageForm()
     return render(request, 'new_post.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def view_user(request, userid):
+    current_user=User.objects.get(id=userid)
+    allimages = Friend_Images.objects.filter(Q(usersubmitter=current_user))
+    profiles = Profile.objects.get(username=current_user)
+
+    return render(request, 'viewuser.html', {"images":allimages,  "profiles":profiles})

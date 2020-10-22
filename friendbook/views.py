@@ -34,8 +34,9 @@ def singleimage(request,image_id):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    allimages = Friend_Images.objects.all()
+#    allimages = Friend_Images.objects.all()
     current_user = request.user
+    allimages = Friend_Images.objects.filter(Q(usersubmitter=current_user))
     allprofiles = Profile.objects.all()
 #    allprofiles = Profile.objects.filter(Q(username=current_user))
 

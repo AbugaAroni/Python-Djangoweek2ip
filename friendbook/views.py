@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Profile, Friend_Images
+from .models import Profile, Friend_Images, followers
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import NewProfileForm, NewImageForm
@@ -76,5 +76,6 @@ def view_user(request, userid):
     current_user=User.objects.get(id=userid)
     allimages = Friend_Images.objects.filter(Q(usersubmitter=current_user))
     profiles = Profile.objects.get(username=current_user)
+    usersfollowers = followers.objects.filter(Q(user=current_user))
 
-    return render(request, 'viewuser.html', {"images":allimages,  "profiles":profiles})
+    return render(request, 'viewuser.html', {"images":allimages,  "profiles":profiles, "followers":usersfollowers})

@@ -53,7 +53,6 @@ class Friend_Images(models.Model):
         result = cls.objects.filter(caption__icontains=search_term)
         return result
 
-
 class followers(models.Model):
-    userfollower = models.ManyToManyField(User, related_name="joy")
-    following = models.ManyToManyField(User, related_name="zac")
+    user = models.ManyToManyField(User, related_name="joy")
+    followinguser = models.ManyToManyField(User, related_name="zac")

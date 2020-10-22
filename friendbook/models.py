@@ -54,5 +54,8 @@ class Friend_Images(models.Model):
         return result
 
 class followers(models.Model):
-    user = models.ManyToManyField(User, related_name="joy")
-    followinguser = models.ManyToManyField(User, related_name="zac")
+    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="joy")
+    followinguser = models.ForeignKey(User,on_delete=models.CASCADE, related_name="zac")
+
+    def __str__(self):
+        return self.user

@@ -13,31 +13,28 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign in Succesful</h3>
+          <h3 class="text-center">Your profile</h3>
         </div>
         <div class="panel-body">
-    <p> Login succesful, {{user.username}} </p>
+    <p> Welcome, {{user.username}} </p>
       {% for p in profiles %}
       {%if p.username == user%}
   <p>Your Bio: </p>    {{p.bio}}
   <p> Your profile picture: </p>
     <img src="{{p.profilephoto.url}}"  class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="">
+    <hr> <hr>
       {%endif%}
     {% endfor%}
-    {% for p in profiles %}
-    {%if p.username == user%}
 
-          {%if p.bio and p.profilephoto%}
-          {%else%}
+
     <form  action="{%url 'user_profile'%}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
 
       {% bootstrap_form form%}
       <input type="submit" class="btn btn-success btn-lg" value="Post">
     </form>
-    {%endif%}
-        {%endif%}
-  {% endfor%}
+
+
         </div>
 
       </div>
@@ -57,7 +54,7 @@
 
   {% for images_item in images %}
     <!-- displaying title -->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 10px; margin: 30px; border-bottom-style: double; height: 300px; ">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 10px; margin: 30px; border-bottom-style: double; height: 500px; ">
       <h2 class="text-center"> {{ images_item.title }}</h2>
       <hr>
     <!--Display  images  -->

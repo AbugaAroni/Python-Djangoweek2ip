@@ -25,4 +25,14 @@ class ProfileTestClass(TestCase):
 
         self.abuga.delete_profile()
         testdelete = Profile.objects.filter(user_name='Abuga')
-        self.assertEqual(len(cats), 0)
+        self.assertEqual(len(testdelete), 0)
+
+    # Testing update Method
+    def test_update_method(self):
+        self.abuga.save_profile()
+        testsaved = Profile.objects.all()
+        self.assertTrue(len(testsaved) > 0)
+
+        self.abuga.update_profile()
+        test_update = Profile.objects.filter(user_name='rick')
+        self.assertTrue(len(test_update) > 0)

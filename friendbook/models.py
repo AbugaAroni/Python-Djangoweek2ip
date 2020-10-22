@@ -9,7 +9,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user_name
-p
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+    def update_profile(self):
+        Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')        
+
     class Meta:
         ordering = ['user_name']
 

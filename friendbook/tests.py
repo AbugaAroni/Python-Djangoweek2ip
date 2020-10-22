@@ -36,3 +36,17 @@ class ProfileTestClass(TestCase):
         self.abuga.update_profile()
         test_update = Profile.objects.filter(user_name='rick')
         self.assertTrue(len(test_update) > 0)
+
+
+
+class Friend_ImagesTestClass(TestCase):
+
+        def setUp(self):
+            self.abuga= Profile(user_name = 'Abuga', profilephoto= 'testimage', bio='testbio of this user')
+            self.abuga.save_profile()
+
+            self.abugaimage= Blog_Images(title= 'Cool pic',i_images='image',  caption='Lorem ipsum dolor sit amet.', profile= self.abuga, comments='Lorem ipsum dolor sit amet.', likes=0)
+
+        # Testing  instance
+        def test_instance(self):
+            self.assertTrue(isinstance(self.abugaimage,Friend_Images))

@@ -1,4 +1,4 @@
-from .models import Profile
+from .models import Profile, Friend_Images
 from django import forms
 
 class NewProfileForm(forms.ModelForm):

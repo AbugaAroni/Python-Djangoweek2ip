@@ -1,14 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-
+from tinymce.models import HTMLField
 class Profile(models.Model):
-    user_name = models.CharField(max_length =30)
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
     profilephoto = models.ImageField(upload_to = 'images/')
-    bio = models.TextField()
+    bio = HTMLField()
 
     def __str__(self):
-        return self.user_name
+        return self.username
 
     def save_profile(self):
         self.save()
@@ -20,7 +21,7 @@ class Profile(models.Model):
         Profile.objects.filter(user_name = self.user_name).update(user_name ='rick')
 
     class Meta:
-        ordering = ['user_name']
+        ordering = ['username']
 
 class Friend_Images(models.Model):
     title = models.CharField(max_length =60)

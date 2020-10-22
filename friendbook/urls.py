@@ -8,6 +8,7 @@ urlpatterns=[
     re_path('search/', views.search_results, name='search_results'),
     re_path('singleimage/(\d+)',views.singleimage,name ='View image'),
     path('accounts/profile/', views.profile, name='user_profile'),
+    #path('new/profile', views.new_article, name='profile'),    
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Profile, Friend_Images
 from django.contrib.auth.decorators import login_required
+from .forms import NewProfileForm
 
 # Create your views here.
 def welcome(request):
@@ -32,7 +33,18 @@ def singleimage(request,image_id):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    allimages = Friend_Images.objects.all()
-    allprofiles = Profile.objects.all()
+#    allimages = Friend_Images.objects.all()
+#    allprofiles = Profile.objects.all()
 
-    return render(request, 'accounts/profile.html', {"images":allimages})
+#    current_user = request.user
+    if request.method == 'POST':
+        form = NewProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            Profilez = form.save(commit=False)
+            Profilez.username = current_user
+            Profilez.save()
+        return redirect(welcome)
+
+    else:
+        form = NewProfileForm()
+    return render(request, 'accounts/profile.html', {"form": form})#, {"images":allimages}

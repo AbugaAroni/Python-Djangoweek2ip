@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Profile, Friend_Images
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def welcome(request):
@@ -21,6 +22,7 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'searchresult.html',{"message":message})
 
+@login_required(login_url='/accounts/login/')
 def singleimage(request,image_id):
     try:
         imagez = Friend_Images.objects.get(id = image_id)

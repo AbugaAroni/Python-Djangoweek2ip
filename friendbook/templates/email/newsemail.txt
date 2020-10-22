@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the friendbook app. You can view pictures of your friends here.

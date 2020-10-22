@@ -1,4 +1,4 @@
-# Images Application / Django week 2 IP
+# Friendbook / Django week 2 IP
 
 ### Author: [Abuga Aroni] (https://github.com/AbugaAroni/)
 

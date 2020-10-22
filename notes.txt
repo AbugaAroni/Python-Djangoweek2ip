@@ -1,3 +1,7 @@
+create newsletter
+
+
+
 followers models
 many-to-many relationship with users
 followersid, userid1
@@ -13,5 +17,8 @@ one person can make as many comments
 comment id, comment, userid, postid
 
 
-Search functionality
-Login, get html message
+Search functionality *******
+Login, get html message*********
+
+
+make the sign up abnd then make the newletter form/email form

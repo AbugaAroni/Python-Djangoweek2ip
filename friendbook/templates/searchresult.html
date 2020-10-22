@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if imgs%}
+      <h2>Found {{ imgs|length }} of searched term {{message}}</h2>
+      <hR>
+    {% else %}
+      <h2> Found 0 articles for the search term {{message}}</h2>
+      <hr>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if imgs %}
+    {% for imagez in imgs %}
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{imagez.i_images.url}}"  class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="">
+   </div>
+   <div class="col-md-6">
+     <div class="row">
+       <div class="col-md-12">
+         <h1 class="text-center">{{imagez.title}}</h1>
+         <hr>
+       </div>
+       <div class="col-md-12">
+         <p><span style="font-weight: bold;">Description:</span> <span style="font-style: italic">{{imagez.caption}}</span></p>
+       </div>
+       <div class="col-md-12">
+         <p style="text-align: right;"><span style="font-weight: bold;">Likes:</span> <span style="font-style: italic">{{images.likes}}</span></p>
+       </div>
+       <div class="col-md-12">
+         <p style="text-align: right;"><span style="font-weight: bold;">Comments:</span> <span style="font-style: italic">for g in imagez.category.all comments | %endfor%</span></p>
+       </div>
+     </div>
+   </div>
+   </div>
+   <hr>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

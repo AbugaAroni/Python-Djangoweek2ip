@@ -44,3 +44,8 @@ class Friend_Images(models.Model):
 
     class Meta:
         ordering = ['title']
+
+    @classmethod
+    def search_by_caption(cls,search_term):
+        result = cls.objects.filter(caption__icontains=search_term)
+        return result

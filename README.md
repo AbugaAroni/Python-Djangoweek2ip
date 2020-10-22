@@ -10,8 +10,9 @@ Users can upload  pictures to the application.
 Users can see their profiles with all their pictures.
 
 ### Limitations
-Some user stories were not implemented. Namely being able to likes, comment on pictures and follow other users. 
+Some user stories were not implemented. Namely being able to likes, comment on pictures and follow other users.
 Website is not responsive.
+Logout button does not work on pages that are not the homepage.
 
 ### Technologies Used
 Python3.6
@@ -27,7 +28,7 @@ Django3.1.2
 
 ### Setup Instructions
 To add images and such, log in as an admin.
-You can log in with user- abuga, password-password
+You can log in with user- bugsy, password-password
 
 If you wish to view the project, you have to download the files. You will need python3.6,Django3.1.2 and all the other Dependencies in the requirements.txt folder  to run the files.
 You will also need to install flask and a virtual environment to effectively run the program.
@@ -35,6 +36,6 @@ You will need to install the Dependencies from the requirements.txt file.
 Execute the command "python3.6 manage.py" whilst in the directory in your command line and you will be able to run the program.
 You will need a text editor to edit and view the code.
 
-### Link to the published site: [Images application by Abuga] ()
+### Link to the published site: [Images application by Abuga] (https://abugaip2.herokuapp.com/)
 
 ### License: [MIT] (https://github.com/AbugaAroni/Python-Djangoweek2ip/blob/main/LICENSE)

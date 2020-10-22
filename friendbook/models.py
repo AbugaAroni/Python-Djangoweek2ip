@@ -55,4 +55,5 @@ class Friend_Images(models.Model):
 
 
 class followers(models.Model):
-    userfollower = models.ManyToManyField(User, on_delete=models.CASCADE)
+    userfollower = models.ManyToManyField(User, related_name="joy")
+    following = models.ManyToManyField(User, related_name="zac")

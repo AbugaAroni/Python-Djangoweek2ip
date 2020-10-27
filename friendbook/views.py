@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import NewProfileForm, NewImageForm
 from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def welcome(request):
@@ -35,11 +36,13 @@ def singleimage(request,image_id):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
-#    allimages = Friend_Images.objects.all()
+
     current_user = request.user
     allimages = Friend_Images.objects.filter(Q(usersubmitter=current_user))
-    allprofiles = Profile.objects.all()
-#    allprofiles = Profile.objects.filter(Q(username=current_user))
+    try:
+        profiles = Profile.objects.get(username=current_user)
+    except Profile.DoesNotExist:
+        profiles = ""
 
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
@@ -47,15 +50,21 @@ def profile(request):
             Profilez = form.save(commit=False)
             Profilez.username = current_user
             Profilez.save()
-        return render(request, 'accounts/profile.html', {"form": form, "images":allimages, "profiles":allprofiles})
+        return render(request, 'accounts/profile.html', {"form": form, "images":allimages, "profile":profiles})
 
     else:
         form = NewProfileForm()
-    return render(request, 'accounts/profile.html', {"form": form, "images":allimages,  "profiles":allprofiles})
+    return render(request, 'accounts/profile.html', {"form": form, "images":allimages,  "profile":profiles})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
+
+    try:
+        profiles = Profile.objects.get(username=current_user)
+    except Profile.DoesNotExist:
+        profiles = ""
+
     if request.method == 'POST':
         form = NewImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -69,7 +78,7 @@ def new_post(request):
 
     else:
         form = NewImageForm()
-    return render(request, 'new_post.html', {"form": form})
+    return render(request, 'new_post.html', {"form": form, "profile":profiles})
 
 @login_required(login_url='/accounts/login/')
 def view_user(request, userid):

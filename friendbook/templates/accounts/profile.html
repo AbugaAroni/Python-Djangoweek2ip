@@ -4,8 +4,9 @@
   {{form.media}}
 <div class="container">
   <div class="row">
+    <div class="col-md-4">
+      </div>
     <!-- Empty div -->
-    <div class="col-md-4"></div>
     <div class="col-md-4">
       {% if form.errors %}
         <p> Some Information Might be Incorrect </p>
@@ -16,32 +17,26 @@
           <h3 class="text-center">Your profile</h3>
         </div>
         <div class="panel-body">
-    <p> Welcome, {{user.username}} </p>
-      {% for p in profiles %}
-      {%if p.username == user%}
-  <p>Your Bio: </p>    {{p.bio}}
-  <p> Your profile picture: </p>
-    <img src="{{p.profilephoto.url}}"  class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="">
-    <hr> <hr>
-      {%endif%}
-    {% endfor%}
+                {% if profile == "" %}
+  <p> Please add details to your profile </p>
+                <form  action="{%url 'user_profile'%}" method="post" enctype="multipart/form-data">
+                  {%csrf_token%}
 
-
-    <form  action="{%url 'user_profile'%}" method="post" enctype="multipart/form-data">
-      {%csrf_token%}
-
-      {% bootstrap_form form%}
-      <input type="submit" class="btn btn-success btn-lg" value="Post">
-    </form>
-
-
+                  {% bootstrap_form form%}
+                  <input type="submit" class="btn btn-success btn-lg" value="Post">
+                </form>
+                {%else%}
+                  <p> Welcome, {{user.username}} </p>
+                <p><span style="font-weight: bold;">Your Bio:</span> </p>    {{profile.bio}}
+                <p><span style="font-weight: bold;"> Your profile picture</span> </p>
+                  <img src="{{profile.profilephoto.url}}"  class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="">
+                  <hr> <hr>
+        {%endif%}
         </div>
-
       </div>
-
     </div>
-    <!-- empty div -->
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      </div>
   </div>
   <div class="row" >
     <div class="panel panel-default">
@@ -50,11 +45,10 @@
         <h3 class="text-center">Your photos</h3>
       </div>
       <div class="panel-body">
-          <div class="panel-body">
-
+<div class="row">
   {% for images_item in images %}
     <!-- displaying title -->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 10px; margin: 30px; border-bottom-style: double; height: 500px; ">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 10px; margin: 30px; border-bottom-style: double; ">
       <h2 class="text-center"> {{ images_item.title }}</h2>
       <hr>
     <!--Display  images  -->
@@ -71,6 +65,7 @@
               <hr>
             </div>
           {% endfor %}
+  </div>
   </div>
   </div>
 </div>

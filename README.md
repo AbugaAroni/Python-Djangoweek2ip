@@ -10,9 +10,8 @@ Users can upload  pictures to the application.
 Users can see their profiles with all their pictures.
 
 ### Limitations
-Some user stories were not implemented. Namely being able to likes, comment on pictures and follow other users.
+Some user stories were not implemented. Namely being able to likes and comments on pictures.
 Website is not responsive.
-Logout button does not work on pages that are not the homepage.
 
 ### Technologies Used
 Python3.6
